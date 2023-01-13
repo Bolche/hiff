@@ -25,7 +25,7 @@ describe("Tag comparison configuration", function() {
     it("contents", function() {
       var html1 = "<div>1</div>";
       var html2 = "<div>2</div>";
-      var d = hiff.compare(html1, html2, {tagComparison: {contents: false}});
+      var d = hiff.compare(html1, html2, {tagComparison: {contents: false, textContents: false}});
 
       // this is tricky - there will still be a change, but it will be to the text node
       // inside only - the <div> won't be considered to have changed
@@ -38,7 +38,7 @@ describe("Tag comparison configuration", function() {
   it("should let you tweak the relative weights of components", function() {
     var html1 = "<div>1</div>";
     var html2 = "<div>2</div>";
-    var d = hiff.compare(html1, html2, {tagComparison: {names: 1, contents: 0.5}});
+    var d = hiff.compare(html1, html2, {tagComparison: {names: 1, contents: 0.5, textContents: 0}});
     // this should be a 'changed' result, because our tweaks made the contents less relevant
     // and they now count as similar
     assert.ok(d.different);

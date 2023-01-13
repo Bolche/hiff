@@ -27,7 +27,7 @@ describe("Hiff", function () {
   it("should deal with content with special comparison requirements", function() {
     var d = compareFixtures("custom-logic-before.html", "custom-logic-after.html", {
       // we'd like to treat tag names as the only thing that has to match
-      tagComparison: {name: true, id: false, attributes: false, contents: false}
+      tagComparison: {name: true, id: false, attributes: false, contents: false, textContents: false},
     });
     assert.ok(d.different);
     // we expect 4 'changed' for each of the <article> tags
@@ -47,6 +47,15 @@ describe("Hiff", function () {
     assert(_.every(d.changes, function(c) {
       return c.after.$node.is('p');
     }), "Some changes were concerning non-<p> nodes.");
+  });
+
+  it("should correctly identify changes in the content of paragraphs", function() {
+    var d = compareFixtures("paragraph-content-before.html", "paragraph-content-after.html");
+    assert.ok(d.different);
+    assert.lengthOf(d.changes, 3);
+    assert(d.changes[0].type, 'removed');
+    assert(d.changes[1].type, 'changed');
+    assert(d.changes[2].type, 'added');
   });
 });
 
