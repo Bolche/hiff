@@ -1,6 +1,6 @@
 {
   "name": "hiff",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Diffing module that understands HTML and gives semantic information about what was changed.",
   "main": "lib/index.js",
   "scripts": {
@@ -21,12 +21,12 @@
     "chai": "^4.2.0",
     "coveralls": "^3.0.6",
     "jshint": "^2.10.2",
-    "mocha": "^8.3.1",
+    "mocha": "^10.2.0",
     "nyc": "^14.1.1"
   },
   "dependencies": {
-    "cheerio": "0.22.0",
+    "cheerio": "^0.22",
     "diff": "4.0.1",
-    "lodash": "4.17.19"
+    "lodash": "~4.17.0"
   }
 }
