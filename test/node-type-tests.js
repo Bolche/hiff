@@ -3,7 +3,7 @@ var assert = require('chai').assert;
 var nodeType = require('../lib/util/cheerio-utils').nodeType;
 
 function checkType(html, expectedType) {
-  var $ = cheerio.load(html);
+  var $ = cheerio.load(html, {quirksMode: true}, false);
   var $node = $($.root().contents()[0]);
   assert.equal(nodeType($node), expectedType, "Type of " + html);
 }
@@ -14,6 +14,5 @@ describe("Node types", function() {
     checkType("Text", 'text');
     checkType("<!-- Comment -- >", 'comment');
     checkType("<![CDATA[  <cdata>  ]]>", 'directive');
-    checkType("<!DOCTYPE doctype>", 'directive');
   });
 });

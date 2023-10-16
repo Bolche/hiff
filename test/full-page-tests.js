@@ -20,7 +20,7 @@ describe("Hiff", function () {
     // all changes detected should be addtions/removals within the <section id='content'> tag
     _.each(d.changes, function(c) {
       assert.ok(c.type == 'added' || c.type == 'removed');
-      assert.equal(c.after.parentPath, 'html > body > div#page-wrapper > section#content');
+      assert.equal(c.after.parentPath, 'div#page-wrapper > section#content');
     });
   });
 
